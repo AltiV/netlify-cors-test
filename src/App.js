@@ -1,25 +1,23 @@
+import { useState } from 'react'
+
 import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  const [msg, setMsg] = useState("click the button")
+  const handler = () =>
+    fetch("https://icanhazdadjoke.com/", { headers: { accept: "Accept: application/json" } })
+      .then((x) => x.json())
+      .then(({ msg }) => setMsg(msg))
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <p>message: {msg}</p>
+        <button onClick={handler}> click meeee</button>
       </header>
     </div>
-  );
+  )
 }
 
 export default App;
